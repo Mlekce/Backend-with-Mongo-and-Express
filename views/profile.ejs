@@ -9,11 +9,15 @@
   <%- include('templates/header') %> 
     <main>
         <h1>Welcome to your profile page.</h1>
-        <p><%= locals.csrfToken %></p>
+        <br>
+        <h3>Your avatar</h3>
+        <img src="<%=locals.avatar%>" alt="avatar">
+        <br>
         <h1>Profile page:</h1>
         <br>
         <form action="/profile/?_csrf=<%=locals.csrfToken%>" method="post" enctype="multipart/form-data">
           <!-- Rest of the form elements, including file inputs -->
+          <input type="hidden" name="email" value="<%= locals.email %> ">
           <input type="file" id="avatar" name="avatar">
           <button>Submit</button>
         </form>

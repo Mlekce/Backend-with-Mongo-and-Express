@@ -2,9 +2,10 @@ const db = require('../data/database')
 const bcrypt = require('bcrypt')
 
 class User {
-  constructor(email, password) {
+  constructor(email, password, avatar) {
     this.email = email;
     this.password = password;
+    this.avatar = avatar
   }
 
   async addUser(){
@@ -25,6 +26,13 @@ class User {
 
   static async comparePasswords(passwd1, passwd2 ){
     return await bcrypt.compare(passwd1, passwd2)
+  }
+
+  async addProfilePicture(){
+    if(!this.avatar){
+      return
+    }
+    return await db.getDb().collection('users').updateOne({email:this.email}, {$set: {avatar: this.avatar}}) 
   }
 
 }

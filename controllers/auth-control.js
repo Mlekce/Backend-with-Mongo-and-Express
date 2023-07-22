@@ -149,10 +149,14 @@ function getProfile(req, res){
     res.render('profile')
 }
 
-function postProfile(req, res){
+async function postProfile(req, res){
     const avatar = req.file
-    console.log(avatar)
-    res.redirect('/')
+    const newUser = new User(res.locals.email, null, avatar.path)
+    var result = await newUser.addProfilePicture()
+    if(result){
+      return res.redirect('/')
+    }
+    return res.status(500).render('500')
 }
 
 module.exports = {

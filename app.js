@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use('/avatar',express.static("pictures"))
+app.use('/pictures',express.static("pictures"))
 app.use(
   session({
     secret: "Super",
