@@ -10,6 +10,9 @@ async function localsMiddleware(req, res, next){
     if(checkUser.avatar){
         res.locals.avatar = checkUser.avatar
     }
+    if(checkUser.isAdmin){
+        res.locals.isAdmin = checkUser.isAdmin
+    }
     
     res.locals.isAuthenticated = isAuthenticated
     res.locals.email = user.email

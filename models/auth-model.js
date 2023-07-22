@@ -28,6 +28,10 @@ class User {
     return await bcrypt.compare(passwd1, passwd2)
   }
 
+  static async getAllUsers(){
+  return await db.getDb().collection('users').find().toArray();
+}
+  
   async addProfilePicture(){
     if(!this.avatar){
       return

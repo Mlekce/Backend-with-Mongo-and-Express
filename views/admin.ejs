@@ -1,15 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <%- include('templates/head') %> 
-  <link rel="stylesheet" href="./style/admin.css" />
-</head>
-<body>
-  <%- include('templates/header') %> 
+  <head>
+    <%- include('templates/head') %>
+    <link rel="stylesheet" href="./style/admin.css" />
+  </head>
+  <body>
+    <%- include('templates/header') %>
     <main>
-        <h1>Welcome to admin page. </h1>
-        <p>If you see this, you are logged as administrator
-            This is the demo project.</p> 
+      <h1>Welcome to admin page.</h1>
+      <p>
+        If you see this, you are logged as administrator This is the demo
+        project.
+      </p>
+      <ul class="user-u1">
+        <div id="add-user">
+          <button id="add-btn">Add user</button>
+          <div class="add-user-drawer">
+            <form action="/user" method="post" id="adminForm">
+              <input
+                type="hidden"
+                name="_csrf"
+                value="<%= locals.csrfToken %>"
+              />
+              <div class="form-control">
+                <label for="email">eMail</label>
+                <input type="email" name="email" id="email" />
+              </div>
+
+              <div class="form-control">
+                <label for="cmail">Confirm eMail</label>
+                <input type="email" name="cmail" id="cmail" />
+              </div>
+
+              <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" />
+              </div>
+              <br>
+              <button type="submit">Make user!</button>
+            </form>
+          </div>
+        </div>
+
+        <% for(let user of users) {%>
+        <li class="user-l1">
+          <div id="user-c1">
+            <div class="user-b1">
+              <a href="/user/<%= user._id %>/edit">Edit</a>
+              <a href="/user/<%= user._id %>/delete>">Delete</a>
+            </div>
+
+            <h1><%= user.email %></h1>
+            <img src="<%= user.avatar %>" id="user-p1" />
+          </div>
+        </li>
+        <% } %>
+      </ul>
     </main>
-</body>
+  </body>
 </html>

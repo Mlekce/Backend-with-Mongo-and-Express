@@ -124,8 +124,10 @@ li {
   letter-spacing: 1px;
   color: white;
   font-size: 1.5rem;
-  font-weight: bold;
+
   font-family: inherit;
+  background-color: rgb(70, 0, 128);
+  border: none;
 }
 
 #logout-btn {
@@ -135,9 +137,36 @@ li {
   font-weight: bold;
   font-family: inherit;
   padding: 0;
+  background-color: rgb(70, 0, 128);
+  border: none;
 }
 
 #logout-btn:hover, #logout-btn-drawer:hover {
   background-color: rgb(70, 0, 128);
   color: rgb(209, 88, 233);
+}
+
+.user-data {
+  display: flex;
+  place-items: center;
+  gap: 1rem;
+  color: white;
+}
+
+.user-data a {
+  text-decoration: none;
+  color: white;
+
+}
+
+.user-data img {
+  height: 50px;
+  width: 50px;
+  border-radius: 5000%;
+}
+
+header div {
+  display: flex;
+  place-items: center;
+  gap: 2rem;
 }

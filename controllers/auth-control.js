@@ -40,12 +40,15 @@ async function getSignup(req, res){
     
 }
 
-function getAdmin(req, res){
+async function getAdmin(req, res){
     if(!res.locals.isAuthenticated){
         return res.status(401).render('401')
     }
-
-    res.render('admin')
+    if(!res.locals.isAdmin){
+        return res.status(403).send('<h1>Forbidden!</h1>')
+    }
+    const all_users = await User.getAllUsers()
+    res.render('admin', {users: all_users})
 }
 
 async function postLogin(req, res){
@@ -97,7 +100,7 @@ async function postLogin(req, res){
 
     req.session.user = { email: email}
     req.session.isAuthenticated = true
-    res.redirect('/admin')
+    res.redirect('/profile')
 }
 
 async function postSignup(req, res){
