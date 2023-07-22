@@ -11,7 +11,7 @@
       <li>
         <form action="/logout" method="POST">
           <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
-          <button>Logout</button>
+          <button id="logout-btn">Logout</button>
         </form>
       </li>
       <% } %>
@@ -37,7 +37,7 @@
         <li class="nav-item">
           <form action="/logout" method="POST">
             <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
-            <button>Logout</button>
+            <button id="logout-btn-drawer">Logout</button>
           </form>
         </li>
         <% } %>

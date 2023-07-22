@@ -178,3 +178,10 @@ button:active {
 #mobile-drawer .nav-item a:active {
   color: rgb(209, 88, 233);
 }
+
+#avatar-picture {
+  width: 300px;
+  height: auto;
+  box-sizing: border-box;
+  
+}

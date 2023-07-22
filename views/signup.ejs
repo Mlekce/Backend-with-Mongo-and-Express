@@ -8,7 +8,6 @@
       <form action="/signup" method="POST" id="signupForm">
         <h3>SIGNUP</h3>
         <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
-        <p><%=locals.csrfToken%></p>
         <% if (errorData.hasError) { %>
           <p class="message"> <%= errorData.message %> </p>
          
