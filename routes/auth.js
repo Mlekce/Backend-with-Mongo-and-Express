@@ -1,6 +1,9 @@
 const express = require('express')
-const controllers = require('../controllers/auth-control')
+
 const router = express.Router()
+const controllers = require('../controllers/auth-control')
+const upload = require("../util/multer-config")
+
 
 router.get('/', controllers.getHome)
 
@@ -20,7 +23,7 @@ router.post('/logout', controllers.logout)
 
 router.get('/profile', controllers.getProfile)
 
-router.post('/profile', controllers.postProfile )
+router.post('/profile', upload.single("avatar"), controllers.postProfile )
 
 
 module.exports = router

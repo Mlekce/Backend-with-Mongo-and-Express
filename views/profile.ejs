@@ -3,27 +3,19 @@
 <head>
   <%- include('templates/head') %> 
   <link rel="stylesheet" href="./style/admin.css" />
+  <link rel="stylesheet" href="./style/style2.css" />
 </head>
 <body>
   <%- include('templates/header') %> 
     <main>
         <h1>Welcome to your profile page.</h1>
+        <p><%= locals.csrfToken %></p>
         <h1>Profile page:</h1>
         <br>
-        <form action="/profile" method="post" enctype="multipart/form-data">
-          <div class="form-control">
-            <label for="email">eMail</label>
-            <input type="email" name="email" id="email">
-          </div>
-          <div class="form-control">
-            <label for="Avatar"></label>
-            <input type="file" name="avatar" id="avatar">
-          </div>
-          <input type="hidden" name="_cfrs" value="<%= locals.cfrsToken %> ">
-          <img id="avatar-preview" src="" alt="avatar-preview">
-          <div class="form-control">
-            <button>Submit</button>
-          </div>
+        <form action="/profile/?_csrf=<%=locals.csrfToken%>" method="post" enctype="multipart/form-data">
+          <!-- Rest of the form elements, including file inputs -->
+          <input type="file" id="avatar" name="avatar">
+          <button>Submit</button>
         </form>
     </main>
 </body>

@@ -1,6 +1,7 @@
 const validate = require('../util/verification')
 const User = require('../models/auth-model')
 
+
 function getHome(req, res){
     res.render('home')
 }
@@ -149,7 +150,9 @@ function getProfile(req, res){
 }
 
 function postProfile(req, res){
-    res.render('profile')
+    const avatar = req.file
+    console.log(avatar)
+    res.redirect('/')
 }
 
 module.exports = {
