@@ -1,0 +1,45 @@
+<header>
+  <nav>
+    <ul>
+      <li><a class="nav-link" href="/home">Home</a></li>
+      <% if (!locals.isAuthenticated) { %>
+      <li><a class="nav-link" href="/signup">Signup</a></li>
+      <li><a class="nav-link" href="/login">Login</a></li>
+      <% } %> <% if (locals.isAuthenticated) { %>
+      <li><a class="nav-link" href="/admin">Admin</a></li>
+      <li>
+        <form action="/logout" method="POST">
+          <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
+          <button>Logout</button>
+        </form>
+      </li>
+      <% } %>
+    </ul>
+  </nav>
+
+  <button id="drawer-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <aside id="mobile-drawer">
+    <nav>
+      <ul>
+        <li class="nav-item"><a href="/home">Home</a></li>
+        <% if (!locals.isAuthenticated) { %>
+        <li class="nav-item"><a href="/signup">Signup</a></li>
+        <li class="nav-item"><a href="/login">Login</a></li>
+        <% } %>
+        <% if (locals.isAuthenticated) { %>
+        <li class="nav-item"><a href="/admin">Admin</a></li>
+        <li class="nav-item">
+          <form action="/logout" method="POST">
+            <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
+            <button>Logout</button>
+          </form>
+        </li>
+        <% } %>
+      </ul>
+    </nav>
+  </aside>
+</header>

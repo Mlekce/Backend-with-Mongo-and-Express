@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('templates/head') %> 
+  <link rel="stylesheet" href="./style/style2.css" />
+  <body>
+    <%- include('templates/header') %> 
+    <main>
+      <form action="/signup" method="POST" id="signupForm">
+        <h3>SIGNUP</h3>
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+        <p><%=locals.csrfToken%></p>
+        <% if (errorData.hasError) { %>
+          <p class="message"> <%= errorData.message %> </p>
+         
+        <% } %>
+        <br />
+        <div class="form-control">
+          <label for="email">Enter your email</label>
+          <input type="email" name="email" id="email" value="<%= errorData.email %>" />
+        </div>
+        <div class="form-control">
+          <label for="confirm-email">Confirm your email</label>
+          <input type="email" name="confirm-email" id="confirm-email" value="<%= errorData.cmail %>"/>
+        </div>
+        <div class="form-control">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" value="<%= errorData.password %>"/>
+        </div>
+        
+        <div class="form-control">
+          <button type="submit">Sign up!</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>

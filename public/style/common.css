@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap");
+body{
+    font-family:"IBM Plex Sans", sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: rgb(70, 0, 128) ;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    height: 5rem;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+li {
+    list-style-type: none;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0 0.2rem;
+    font-weight: bold;
+}
+
+.nav-link:hover, .nav-link:active{
+    color: rgb(209, 88, 233);
+}
+
+.logout {
+    color: white;
+    border: none;
+    background-color: rgb(70, 0, 128);
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: inherit;
+    padding: 0;
+}
+
+.logout:active, .logout:hover {
+    background-color: rgb(70, 0, 128);
+    color: rgb(209, 88, 233);
+    padding: 0;
+} 
+
+#drawer-btn {
+    display: flex;
+    flex-direction: column;
+    width: 2rem;
+    height: 2rem;
+    justify-content: space-around;
+    padding: 0.1rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  #drawer-btn span {
+    width: 2rem;
+    height: 2px;
+    background-color: rgb(253, 253, 253);
+  }
+  
+  #mobile-drawer {
+    display: none;
+  }
+  
+  #mobile-drawer.open {
+    display: block;
+    position: fixed;
+    top: 5rem;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 5rem);
+    background-color: rgb(70, 0, 128);
+  }
+  
+  #mobile-drawer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem 0;
+    padding: 0;
+  }
+  
+  #mobile-drawer .nav-item {
+    margin: 1.5rem 0;
+  }
+  
+  #mobile-drawer .nav-item a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+  #mobile-drawer .nav-item a:hover,
+  #mobile-drawer .nav-item a:active {
+    color: rgb(209, 88, 233);
+  }
+
+  .message {
+    color: rgb(109, 6, 6);
+  }
