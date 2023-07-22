@@ -149,7 +149,7 @@ function getProfile(req, res){
 }
 
 function postProfile(req, res){
-    
+    res.render('profile')
 }
 
 module.exports = {
@@ -160,6 +160,8 @@ module.exports = {
     postLogin: postLogin,
     postSignup: postSignup,
     logout: logout,
-    redRoot:redRoot
+    redRoot:redRoot, 
+    getProfile: getProfile,
+    postProfile: postProfile
 
 }
