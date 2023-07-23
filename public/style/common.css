@@ -60,61 +60,7 @@ li {
   padding: 0;
 }
 
-#drawer-btn {
-  display: flex;
-  flex-direction: column;
-  width: 2rem;
-  height: 2rem;
-  justify-content: space-around;
-  padding: 0.1rem;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
 
-#drawer-btn span {
-  width: 2rem;
-  height: 2px;
-  background-color: rgb(253, 253, 253);
-}
-
-#mobile-drawer {
-  display: none;
-}
-
-#mobile-drawer.open {
-  display: block;
-  position: fixed;
-  top: 5rem;
-  left: 0;
-  width: 100%;
-  height: calc(100vh - 5rem);
-  background-color: rgb(70, 0, 128);
-}
-
-#mobile-drawer ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 3rem 0;
-  padding: 0;
-}
-
-#mobile-drawer .nav-item {
-  margin: 1.5rem 0;
-}
-
-#mobile-drawer .nav-item a {
-  text-decoration: none;
-  color: white;
-  font-size: 1.5rem;
-}
-
-#mobile-drawer .nav-item a:hover,
-#mobile-drawer .nav-item a:active {
-  color: rgb(209, 88, 233);
-}
 
 .message {
   color: rgb(109, 6, 6);
@@ -169,4 +115,86 @@ header div {
   display: flex;
   place-items: center;
   gap: 2rem;
+}
+
+#drawer-btn {
+  display: none;
+}
+
+#mobile-drawer {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  header {
+    justify-content: space-between;
+  }
+
+  .container-c1 {
+    flex-grow: 1;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+   
+  }
+
+  header > nav:first-child {
+    display: none;
+  }
+
+  #drawer-btn {
+    display: flex;
+    flex-direction: column;
+    width: 2rem;
+    height: 2rem;
+    justify-content: space-around;
+    padding: 0.1rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  #drawer-btn span {
+    width: 2rem;
+    height: 2px;
+    background-color: rgb(253, 253, 253);
+  }
+  
+  #mobile-drawer {
+    display: none;
+  }
+  
+  #mobile-drawer.open {
+    display: block;
+    position: fixed;
+    top: 5rem;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 5rem);
+    background-color: rgb(70, 0, 128);
+  }
+  
+  #mobile-drawer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem 0;
+    padding: 0;
+  }
+  
+  #mobile-drawer .nav-item {
+    margin: 1.5rem 0;
+  }
+  
+  #mobile-drawer .nav-item a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+  #mobile-drawer .nav-item a:hover,
+  #mobile-drawer .nav-item a:active {
+    color: rgb(209, 88, 233);
+  }
 }
