@@ -1,45 +1,74 @@
-const db = require('../data/database')
-const bcrypt = require('bcrypt')
+const db = require("../data/database");
+const bcrypt = require("bcrypt");
 
 class User {
   constructor(email, password, avatar) {
     this.email = email;
     this.password = password;
-    this.avatar = avatar
+    this.avatar = avatar;
   }
 
-  async addUser(){
-    const encPassword = await bcrypt.hash(this.password, 12)
-    const newUser = { email: this.email, password: encPassword }
-    await db.getDb().collection('users').insertOne(newUser)
+  async addUser() {
+    const encPassword = await bcrypt.hash(this.password, 12);
+    const newUser = {
+      email: this.email,
+      password: encPassword,
+      avatar: "pictures/nopicture.png",
+    };
+    await db.getDb().collection("users").insertOne(newUser);
   }
 
-  async findUser(){
-    const checkUserExist = await db.getDb().collection('users').findOne({email:this.email})
-    return checkUserExist
-
+  async findUser() {
+    const checkUserExist = await db
+      .getDb()
+      .collection("users")
+      .findOne({ email: this.email });
+    return checkUserExist;
   }
 
-  async deleteUser(){
-    return await db.getDb().collection('users').deleteOne({email:this.email})
+  static async findUserById(id) {
+    const checkUserExist = await db
+      .getDb()
+      .collection("users")
+      .findOne({ _id: id });
+    return checkUserExist;
   }
 
-  static async comparePasswords(passwd1, passwd2 ){
-    return await bcrypt.compare(passwd1, passwd2)
+  static async banUser(id, status) {
+    return await db
+      .getDb()
+      .collection("users")
+      .updateOne({ _id: id }, { $set: { isBanned: status } });
   }
 
-  static async getAllUsers(){
-  return await db.getDb().collection('users').find().toArray();
-}
-  
-  async addProfilePicture(){
-    if(!this.avatar){
-      return
+  async deleteUser() {
+    return await db
+      .getDb()
+      .collection("users")
+      .deleteOne({ email: this.email });
+  }
+
+  static async comparePasswords(passwd1, passwd2) {
+    return await bcrypt.compare(passwd1, passwd2);
+  }
+
+  static async getAllUsers() {
+    return await db.getDb().collection("users").find().toArray();
+  }
+
+  async addProfilePicture() {
+    if (!this.avatar) {
+      return;
     }
-    return await db.getDb().collection('users').updateOne({email:this.email}, {$set: {avatar: this.avatar}}) 
+    return await db
+      .getDb()
+      .collection("users")
+      .updateOne({ email: this.email }, { $set: { avatar: this.avatar } });
   }
 
+  static async encryptPassword(passwd) {
+    return await bcrypt.hash(passwd, 12);
+  }
 }
 
-
-module.exports = User
+module.exports = User;

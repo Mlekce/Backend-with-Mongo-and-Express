@@ -7,6 +7,7 @@ async function localsMiddleware(req, res, next){
         return next()
     }
     const checkUser = await (new User(user.email)).findUser()
+    console.log(checkUser)
     if(checkUser.avatar){
         res.locals.avatar = checkUser.avatar
     }

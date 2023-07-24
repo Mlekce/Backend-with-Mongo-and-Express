@@ -16,7 +16,7 @@
         <div id="add-user">
           <button id="add-btn">Add user</button>
           <div class="add-user-drawer">
-            <form action="/user" method="post" id="adminForm">
+            <form action="/new-user" method="post" id="adminForm">
               <input
                 type="hidden"
                 name="_csrf"
@@ -36,7 +36,7 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" />
               </div>
-              <br>
+              <br />
               <button type="submit">Make user!</button>
             </form>
           </div>
@@ -46,11 +46,29 @@
         <li class="user-l1">
           <div id="user-c1">
             <div class="user-b1">
-              <a href="/user/<%= user._id %>/edit">Edit</a>
-              <a href="/user/<%= user._id %>/delete>">Delete</a>
+              <form action="/user/<%= user._id %>/ban" method="post">
+                <input
+                  type="hidden"
+                  name="_csrf"
+                  value="<%= locals.csrfToken %>"
+                />
+                <button>Ban user</button>
+              </form>
+              <form action="/user/<%= user._id %>/makeadmin>" method="post">
+                <input
+                  type="hidden"
+                  name="_csrf"
+                  value="<%= locals.csrfToken %>"
+                />
+                <button>Admin</button>
+              </form>
             </div>
 
             <h3><%= user.email %></h3>
+            <% if (user.isBanned) { %>
+             <span style="color:red">Banned user</span>
+            <% } %>
+            
             <img src="<%= user.avatar %>" id="user-p1" />
           </div>
         </li>

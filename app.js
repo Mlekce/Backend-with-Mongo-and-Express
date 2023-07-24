@@ -1,13 +1,14 @@
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
-
 const MongoDBStore = require("connect-mongodb-session")(session);
 const db = require("./data/database");
 const localsMiddleware = require("./middlewares/locals");
 const authRoutes = require("./routes/auth");
+const profileRoutes = require("./routes/profile");
+const adminRoutes = require("./routes/admin");
 const port = 3000;
-const csrf = require('csurf')
+const csrf = require("csurf");
 const app = express();
 
 const storage = new MongoDBStore({
@@ -20,7 +21,7 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use('/pictures',express.static("pictures"))
+app.use("/pictures", express.static("pictures"));
 app.use(
   session({
     secret: "Super",
@@ -31,12 +32,13 @@ app.use(
 );
 app.use(localsMiddleware);
 app.use(csrf());
-app.use(function(req, res, next){
-  res.locals.csrfToken = req.csrfToken()
-  next()
+app.use(function (req, res, next) {
+  res.locals.csrfToken = req.csrfToken();
+  next();
 });
+app.use(adminRoutes);
 app.use(authRoutes);
-
+app.use(profileRoutes);
 
 db.connectDb()
   .then(function () {
