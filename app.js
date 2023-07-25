@@ -32,12 +32,14 @@ app.use(
 );
 app.use(localsMiddleware);
 app.use(csrf());
+
 app.use(function (req, res, next) {
   res.locals.csrfToken = req.csrfToken();
   next();
 });
-app.use(adminRoutes);
+
 app.use(authRoutes);
+app.use(adminRoutes);
 app.use(profileRoutes);
 
 db.connectDb()

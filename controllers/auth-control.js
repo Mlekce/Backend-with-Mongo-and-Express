@@ -47,6 +47,7 @@ async function getAdmin(req, res){
     if(!res.locals.isAdmin){
         return res.status(403).send('<h1>Forbidden!</h1>')
     }
+
     const all_users = await User.getAllUsers()
     res.render('admin', {users: all_users})
 }
@@ -162,6 +163,7 @@ async function postProfile(req, res){
     return res.status(500).render('500')
 }
 
+
 module.exports = {
     getHome: getHome,
     getLogin: getLogin,
@@ -172,6 +174,7 @@ module.exports = {
     logout: logout,
     redRoot:redRoot, 
     getProfile: getProfile,
-    postProfile: postProfile
+    postProfile: postProfile,
+    
 
 }

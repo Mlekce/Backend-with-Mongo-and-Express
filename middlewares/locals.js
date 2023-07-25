@@ -14,6 +14,9 @@ async function localsMiddleware(req, res, next){
     if(checkUser.isAdmin){
         res.locals.isAdmin = checkUser.isAdmin
     }
+    if(checkUser.isBanned){
+        res.locals.isBanned = checkUser.isBanned
+    }
     
     res.locals.isAuthenticated = isAuthenticated
     res.locals.email = user.email
