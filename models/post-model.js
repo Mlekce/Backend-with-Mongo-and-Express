@@ -40,12 +40,16 @@ class Post {
       );
   }
 
-  static async findPost(id) {
+  static async findSingePost(id) {
     return await db.getDb().collection("posts").findOne({ _id: id });
   }
 
-  static async findPosts(authorId) {
+  static async findPostsAuthor(authorId) {
     return await db.getDb().collection("posts").find({ "author.authorId": authorId }).toArray();
+  }
+
+  static async findAllPosts(){
+    return await db.getDb().collection("posts").find().toArray()
   }
 }
 
