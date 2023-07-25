@@ -45,7 +45,7 @@ async function getAdmin(req, res){
         return res.status(401).render('401')
     }
     if(!res.locals.isAdmin){
-        return res.status(403).send('<h1>Forbidden!</h1>')
+        return res.status(403).render('403')
     }
 
     const all_users = await User.getAllUsers()

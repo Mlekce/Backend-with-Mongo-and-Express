@@ -6,5 +6,6 @@ router.post("/new-user", controller.addUsers);
 
 router.post("/user/:id/ban", controller.Ban)
 
+router.post("/user/:id/make-admin", controller.makeAdmin)
 
 module.exports = router;

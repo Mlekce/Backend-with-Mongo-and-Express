@@ -69,6 +69,10 @@ class User {
   static async encryptPassword(passwd) {
     return await bcrypt.hash(passwd, 12);
   }
+
+  static async addAdminRights(id, rights){
+    return await db.getDb().collection('users').updateOne({ _id :  id}, {$set : {isAdmin: rights}})
+  }
 }
 
 module.exports = User;

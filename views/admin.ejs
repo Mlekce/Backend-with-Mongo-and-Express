@@ -54,7 +54,7 @@
                 />
                 <button>Ban user</button>
               </form>
-              <form action="/user/<%= user._id %>/makeadmin>" method="post">
+              <form action="/user/<%= user._id %>/make-admin" method="post">
                 <input
                   type="hidden"
                   name="_csrf"
@@ -68,7 +68,9 @@
             <% if (user.isBanned) { %>
              <span style="color:red">Banned user</span>
             <% } %>
-            
+            <% if (user.isAdmin) { %>
+              <span style="color:green">Administrator</span>
+             <% } %>
             <img src="<%= user.avatar %>" id="user-p1" />
           </div>
         </li>
