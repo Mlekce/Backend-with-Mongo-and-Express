@@ -1,31 +1,34 @@
 <header>
   <nav>
     <ul>
-      <li><a class="nav-link" href="/home">Home</a></li>
       <% if (!locals.isAuthenticated) { %>
+      <li><a class="nav-link" href="/home">Home</a></li>
       <li><a class="nav-link" href="/signup">Signup</a></li>
       <li><a class="nav-link" href="/login">Login</a></li>
-      <% } %> <% if (locals.isAuthenticated) { %>
+      <% } %> <% if (locals.isAuthenticated) { %> <% if (locals.isAdmin) { %>
       <li><a class="nav-link" href="/admin">Admin</a></li>
-      <li><a class="nav-link" href="/profile">Profile</a></li>
+      <% } %>
+
+      
       <li><a class="nav-link" href="/posts">Blog</a></li>
       <li><a class="nav-link" href="/myposts">My posts</a></li>
+      <li><a class="nav-link" href="/profile">Profile</a></li>
       <li>
         <form action="/logout" method="POST">
-          <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
+          <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf" />
           <button id="logout-btn">Logout</button>
         </form>
       </li>
       <% } %>
     </ul>
   </nav>
-  
+
   <div class="container-c1">
     <div class="user-data">
-    <% if (locals.avatar &&  locals.email) { %>
+      <% if (locals.avatar && locals.email) { %>
       <a href="/profile"><%= locals.email%></a>
-      <a href="/profile"><img  src="<%= locals.avatar %> "></a>
-    <% } %>
+      <a href="/profile"><img src="<%= locals.avatar %> " /></a>
+      <% } %>
     </div>
     <div class="container-c2">
       <button id="drawer-btn">
@@ -40,15 +43,18 @@
             <% if (!locals.isAuthenticated) { %>
             <li class="nav-item"><a href="/signup">Signup</a></li>
             <li class="nav-item"><a href="/login">Login</a></li>
-            <% } %>
-            <% if (locals.isAuthenticated) { %>
+            <% } %> <% if (locals.isAuthenticated) { %>
             <li class="nav-item"><a href="/admin">Admin</a></li>
             <li class="nav-item"><a href="/profile">Profile</a></li>
             <li class="nav-item"><a href="/posts">Blog</a></li>
             <li class="nav-item"><a href="/myposts">My posts</a></li>
             <li class="nav-item">
               <form action="/logout" method="POST">
-                <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
+                <input
+                  type="hidden"
+                  value="<%= locals.csrfToken %>"
+                  name="_csrf"
+                />
                 <button id="logout-btn-drawer">Logout</button>
               </form>
             </li>
@@ -58,5 +64,4 @@
       </aside>
     </div>
   </div>
-  
 </header>

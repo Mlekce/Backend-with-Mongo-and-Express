@@ -8,9 +8,7 @@ async function getPosts(req, res) {
 
 async function getMyPosts(req, res) {
   const id = String(res.locals._id)
-  const posts = await Post.findPostsAuthor(id);
-  console.log(posts)
-  
+  const posts = await Post.findPostsAuthor(id); 
   return res.render("my-posts", { posts: posts });
 }
 

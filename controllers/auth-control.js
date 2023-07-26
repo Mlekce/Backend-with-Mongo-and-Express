@@ -101,7 +101,7 @@ async function postLogin(req, res){
 
     req.session.user = { email: email}
     req.session.isAuthenticated = true
-    res.redirect('/profile')
+    res.redirect('/posts')
 }
 
 async function postSignup(req, res){
