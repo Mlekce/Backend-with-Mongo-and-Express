@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('templates/head') %>
+    <link rel="stylesheet" href="./style/style2.css" />
+  </head>
+  <body>
+    <%- include('templates/header') %>
+    <main>
+      <h3>Reset password</h3>
+      <br>
+      <p>You need to enter email address of your account where we can send you reset link</p>
+      <form action="/reset" method="POST" id="resetForm">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
+
+        <% if (errorData.hasError) { %>
+        <p class="message"><%= errorData.message %></p>
+        <% } %>
+        <br />
+
+        <div class="form-control">
+          <label for="email">Enter your email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value="<%= errorData.email %>"
+          />
+        </div>
+        <div class="form-control">
+          <button type="submit">Login!</button>
+        </div>
+      </form>
+    </main>
+    
+  </body>
+</html>

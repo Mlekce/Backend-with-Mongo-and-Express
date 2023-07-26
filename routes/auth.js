@@ -4,6 +4,9 @@ const router = express.Router()
 const controllers = require('../controllers/auth-control')
 
 
+router.get('/reset', controllers.resetPage)
+
+router.post('/reset', controllers.resetPassword)
 
 router.get('/', controllers.getHome)
 

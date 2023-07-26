@@ -26,6 +26,14 @@ class User {
     return checkUserExist;
   }
 
+  static async findUserByEmail(email) {
+    const checkUserExist = await db
+      .getDb()
+      .collection("users")
+      .findOne({ email: email });
+    return checkUserExist;
+  }
+
   static async findUserById(id) {
     const checkUserExist = await db
       .getDb()
@@ -72,6 +80,14 @@ class User {
 
   static async addAdminRights(id, rights){
     return await db.getDb().collection('users').updateOne({ _id :  id}, {$set : {isAdmin: rights}})
+  }
+
+  static async addToken(id, token){
+    return await db.getDb().collection('users').updateOne({ _id :  id}, {$set : {token: token, tokenDate: new Date().getTime()}})
+  }
+
+  static async findToken(token){
+    return await db.getDb().collection('users').findOne({token: token})
   }
 }
 
