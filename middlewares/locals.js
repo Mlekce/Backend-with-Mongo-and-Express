@@ -19,6 +19,7 @@ async function localsMiddleware(req, res, next){
     
     res.locals.isAuthenticated = isAuthenticated
     res.locals.email = user.email
+    res.locals._id = checkUser._id
     next()
 }
 
