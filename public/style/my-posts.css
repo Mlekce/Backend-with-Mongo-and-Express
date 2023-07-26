@@ -82,5 +82,10 @@ button:active {
   gap: 1rem;
   align-items: center;
   justify-content: center;
+}
 
+#newPostForm {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
 }

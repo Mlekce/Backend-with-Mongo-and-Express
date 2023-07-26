@@ -9,8 +9,9 @@
   <body>
     <%- include('templates/header') %>
     <main>
-      <h3>Welcome user, here are your blog posts.</h3>
-      <br />
+      <br>
+      <h1>Welcome user, here are your blog posts.</h1>
+      <br/>
       <div class="my-posts">
         <% if (!posts) { %>
         <h1>No posts written yet.</h1>
@@ -50,8 +51,10 @@
         </ol>
         <% } %>
       </div>
-
+      
       <div class="new-posts">
+        <h1>Create new post</h1>
+        <br>
         <form action="/myposts/create" method="post" id="newPostForm">
           <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
           <div class="form-control">

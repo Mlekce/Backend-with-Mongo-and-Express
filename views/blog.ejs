@@ -3,29 +3,46 @@
 <head>
   <%- include('templates/head') %> 
   <link rel="stylesheet" href="./style/home.css">
+  <link rel="stylesheet" href="./style/blog.css">
 </head>
 <body>
   <%- include('templates/header') %> 
     <main>
-        <h1>Welcome visitor, here are our blog posts. </h1>
+      <h3>Welcome user, here are your blog posts.</h3>
+      <br />
+      <div class="my-posts">
         <% if (!posts) { %>
-         <h1>No posts written yet, be the first!</h1>
+        <h1>No posts written yet.</h1>
         <% } else { %>
-          <ol>
-            <% for(let post of posts) { %>
-              <li>
-                <h3><%= post.title %></h3>
-                <p><%= post.summary %></p>
-                <i>Written by: <%= post.author.name %></i> || <i><%= post.date %></i>
-                <form action="/post/<%= post._id %>/delete" method="post">
-                  <input type="hidden" name="" id="">
-                  <button>Delete</button>
-                </form>
-              </li>
-              <% } %>
-          </ol>
+        <ol class="all-posts">
+          <% for(let post of posts) { %>
+          <li class="post">
+            <div class="post-item">
+              <h3><%= post.title %></h3>
+              <p><%= post.summary %></p>
+            </div>
+            <div class="post-item">
+              <i>Written by: <%= post.author.authorName %></i> ||
+              <i> <%= post.date %> </i>
+            </div>
+
+            <div class="post-item">
+              <form action="/post/<%= post._id %>/delete" method="post">
+                <input
+                  type="hidden"
+                  name="_csrf"
+                  value="<%= locals.csrfToken %>"
+                />
+                <button>View</button>
+              </form>
+
+            </div>
+          </li>
+          <% } %>
+        </ol>
         <% } %>
-        
+      </div>
+
     </main>
 </body>
 </html>
