@@ -23,6 +23,10 @@ router.post('/signup', controllers.postSignup)
 
 router.post('/logout', controllers.logout)
 
+router.get('/reset-password', controllers.getResetPasswordPage )
+
+router.post('/reset-password', controllers.postResetPasswordPage)
+
 router.get('/banned', (req, res) => {
     res.render('banned')
 })

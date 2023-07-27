@@ -7,10 +7,11 @@ async function addUsers(req, res) {
   var email = req.body.email;
   var cmail = req.body.cmail;
   var password = req.body.password;
-  var checkRes = validation.validateInput(email, cmail, password);
+  var checkRes = validation.validateInputEmail(email, cmail, password);
+
   if (!checkRes) {
     console.log("Wrong input");
-    return res.status(401).render("401");
+    return res.status(500).render("500");
   }
   var new_user = new User(email, password);
   if (await new_user.findUser()) {

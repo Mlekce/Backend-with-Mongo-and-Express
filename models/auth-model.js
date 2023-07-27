@@ -89,6 +89,10 @@ class User {
   static async findToken(token){
     return await db.getDb().collection('users').findOne({token: token})
   }
+
+  static async setNewPassword(id, passwd){
+    return await db.getDb().collection('users').updateOne({ _id :  id}, {$set : {password: passwd}})
+  }
 }
 
 module.exports = User;

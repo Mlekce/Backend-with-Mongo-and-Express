@@ -2,6 +2,7 @@ const validate = require("../util/verification");
 const generateUniqueToken = require("../util/makepass");
 const sendMail = require("../util/sendmail");
 const User = require("../models/auth-model");
+const { ObjectId } = require("mongodb");
 
 function getHome(req, res) {
   res.render("home");
@@ -204,7 +205,22 @@ function resetPage(req, res) {
   res.render("reset", { errorData: savedSessionData });
 }
 
-function getResetPasswordPage(req, res){
+
+async function postResetPasswordPage(req, res){
+  const token = req.body.token
+  const passwd = req.body.password
+  const cpasswd = req.body.cpassword
+  if(passwd && cpasswd && passwd === cpasswd){
+    let encPassword = await User.encryptPassword(passwd)
+    const user = await User.findToken(token)
+    if(!user.token){
+      return res.status(404).redirect('/404')
+    }
+    const id = new ObjectId(user._id)
+    await User.setNewPassword(id, encPassword)
+    return res.redirect('/login')
+  }
+  res.redirect('/500')
 
 }
 
@@ -213,24 +229,13 @@ async function getResetPasswordPage(req, res){
     const user = await User.findToken(token)
     const nowTime = new Date().getTime()
     if(!user.token){
-        req.session.errorData = {
-            hasError: true,
-            message: "Error in link"
-        }
-        req.session.save(() => {
-            res.redirect('/reset-password')
-        })
+      return res.status(404).redirect('/404')
     }
-    if( nowTime - user.tokenDate > 600000){
-        req.session.errorData = {
-            hasError: true,
-            message: "Token expired. Repeat reset process"
-        }
-        req.session.save(() => {
-            res.redirect('/reset-password')
-        })
+    if(nowTime - user.tokenDate >= 600000){
+      console.log("token expired")
+      return res.redirect('/reset')
     }
-    
+    res.render('newpassword', {token:token})
 }
 
 module.exports = {
@@ -246,4 +251,6 @@ module.exports = {
   postProfile: postProfile,
   resetPage: resetPage,
   resetPassword: resetPassword,
+  getResetPasswordPage: getResetPasswordPage,
+  postResetPasswordPage:postResetPasswordPage
 };
