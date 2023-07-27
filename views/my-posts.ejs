@@ -10,7 +10,7 @@
     <%- include('templates/header') %>
     <main>
       <br>
-      <h1>Welcome user, here are your blog posts.</h1>
+      <h2>Welcome user, here are your blog posts.</h2>
       <br/>
       <div class="my-posts">
         <% if (!posts) { %>
@@ -53,7 +53,7 @@
       </div>
       
       <div class="new-posts">
-        <h1>Create new post</h1>
+        <h3>Create new post</h3>
         <br>
         <form action="/myposts/create" method="post" id="newPostForm">
           <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
@@ -84,7 +84,10 @@
             ></textarea>
           </div>
           <div class="form-control">
-            <button>Post</button>
+            <span>
+              <button>Post</button>
+            </span>
+            
           </div>
         </form>
       </div>

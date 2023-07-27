@@ -1,8 +1,11 @@
-.top-content {
+.top-content-page {
     display: flex;
     flex-direction: column;
     gap: 1rem !important;
     font-size: 1.25rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+    
 }
 
 .top-author {
@@ -16,4 +19,14 @@ main {
     display: grid;
     flex-direction: column;
     gap: 2rem;
+    width: 100%;
+}
+
+#load-comments-btn {
+    margin-bottom: 1rem;
+}
+
+.comment-section {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    padding: 2rem;
 }

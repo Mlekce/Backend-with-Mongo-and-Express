@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hackers</title>
     <link rel="stylesheet" href="/style/home.css" />
     <link rel="stylesheet" href="/style/my-posts.css" />
@@ -19,29 +19,33 @@
           <li><a class="nav-link" href="/home">Home</a></li>
           <li><a class="nav-link" href="/signup">Signup</a></li>
           <li><a class="nav-link" href="/login">Login</a></li>
-          <% } %> <% if (locals.isAuthenticated) { %> <% if (locals.isAdmin) { %>
+          <% } %> <% if (locals.isAuthenticated) { %> <% if (locals.isAdmin) {
+          %>
           <li><a class="nav-link" href="/admin">Admin</a></li>
           <% } %>
-    
-          
+
           <li><a class="nav-link" href="/posts">Blog</a></li>
           <li><a class="nav-link" href="/myposts">My posts</a></li>
           <li><a class="nav-link" href="/profile">Profile</a></li>
           <li>
             <form action="/logout" method="POST">
-              <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf" />
+              <input
+                type="hidden"
+                value="<%= locals.csrfToken %>"
+                name="_csrf"
+              />
               <button id="logout-btn">Logout</button>
             </form>
           </li>
           <% } %>
         </ul>
       </nav>
-    
+
       <div class="container-c1">
         <div class="user-data">
           <% if (locals.avatar && locals.email) { %>
           <a href="/profile"><%= locals.email%></a>
-          <a href="/profile"><img src="/<%= locals.avatar %> "/></a>
+          <a href="/profile"><img src="/<%= locals.avatar %> " /></a>
           <% } %>
         </div>
         <div class="container-c2">
@@ -80,31 +84,36 @@
       </div>
     </header>
     <main>
-      <div class="top-content">
-        <div class="top-title"> 
-          <h2> <%= post.title %></h2>
-           </div>
-        <div class="top-author"> 
-          <div>
-            Author: <b><%= post.author.authorName %></b>
-          </div>
-           <div>Date:
-            <i><%= post.date %> </i>  </div>
-          </div>
-           
-        <div class="top-content"> <%= post.content %></div>
+      <div class="top-content-page">
+        <div class="top-title">
+          <h2><%= post.title %></h2>
+        </div>
+        <div class="top-author">
+          <div>Author: <b><%= post.author.authorName %></b></div>
+          <div>Date: <i><%= post.date %> </i></div>
+        </div>
+        <hr>
+        <div class="top-content"><%= post.content %></div>
       </div>
-
+      
       <div class="comment-section">
         <section id="comments">
           <p>
             This post might have comments. You can load them if you want to view
             them.
           </p>
-          <button id="load-comments-btn" class="btn btn-alt" data-postid="<%= post._id %>">Load Comments</button>
+          <br />
+          <button
+            id="load-comments-btn"
+            class="btn btn-alt"
+            data-postid="<%= post._id %>"
+          >
+            Load Comments
+          </button>
         </section>
         <section id="comments-form">
           <h2>Leave a comment</h2>
+          <br>
           <form data-postid="<%= post._id %>">
             <div class="form-control">
               <label for="title">Comment title</label>
@@ -114,10 +123,15 @@
               <label for="text">Your comment</label>
               <textarea name="text" id="text" rows="3" required></textarea>
             </div>
-            <button class="btn">Save Comment</button>
+            <br>
+            <div class="form-control">
+              <span><button class="btn">Save Comment</button> </span>
+              
+            </div>
+            
           </form>
         </section>
       </div>
     </main>
-</body>
+  </body>
 </html>
