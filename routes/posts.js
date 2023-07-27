@@ -1,12 +1,19 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const controller = require('../controllers/posts-control')
+const protectRoute = require("../middlewares/protection");
+const controller = require("../controllers/posts-control");
 
-router.get('/posts', controller.getPosts)
+router.use(protectRoute);
 
-router.get('/myposts', controller.getMyPosts)
+router.get("/posts", controller.getPosts);
 
-router.post('/myposts/create', controller.postCreate)
+router.get("/myposts", controller.getMyPosts);
 
-module.exports = router
+router.post("/myposts/create", controller.postCreate);
+
+router.get("/post/:id/update", controller.updatePost);
+
+router.post("/post/:id/delete", controller.deletePost);
+
+module.exports = router;

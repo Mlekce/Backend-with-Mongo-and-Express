@@ -1,7 +1,9 @@
 const express = require("express");
 const controller = require("../controllers/admin-control");
+const protectRoute = require('../middlewares/protection')
 const router = express.Router();
 
+router.use(protectRoute)
 router.post("/new-user", controller.addUsers);
 
 router.post("/user/:id/ban", controller.Ban)

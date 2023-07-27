@@ -24,18 +24,12 @@
             <div class="post-item">
               <i>Written by: <%= post.author.authorName %></i> ||
               <i> <%= post.date %> </i>
-            </div>
-
+              </div>
             <div class="post-item">
-              <form action="/post/<%= post._id %>/view" method="post">
-                <input
-                  type="hidden"
-                  name="_csrf"
-                  value="<%= locals.csrfToken %>"
-                />
-                <button>View</button>
-              </form>
-              
+              <%= post.content %>
+            </div>
+            <div class="post-item">
+                           
               <% if (locals.isAdmin) { %>
                 <form action="/post/<%= post._id %>/delete" method="post">
                   <input

@@ -4,6 +4,7 @@ async function localsMiddleware(req, res, next){
     const isAuthenticated = req.session.isAuthenticated
     
     if(!user || !isAuthenticated){
+        res.locals.isAuthenticated = false; 
         return next()
     }
     const checkUser = await (new User(user.email)).findUser()

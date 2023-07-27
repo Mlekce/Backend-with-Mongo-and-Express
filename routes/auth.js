@@ -1,5 +1,6 @@
 const express = require('express')
 const forceBan = require('../middlewares/protect')
+const protectRoute = require('../middlewares/protection')
 const router = express.Router()
 const controllers = require('../controllers/auth-control')
 
@@ -25,7 +26,7 @@ router.post('/logout', controllers.logout)
 router.get('/banned', (req, res) => {
     res.render('banned')
 })
-
+router.use(protectRoute)
 router.use(forceBan)
 router.get('/admin', controllers.getAdmin)
 

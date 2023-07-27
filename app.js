@@ -8,6 +8,7 @@ const authRoutes = require("./routes/auth");
 const profileRoutes = require("./routes/profile");
 const adminRoutes = require("./routes/admin");
 const postsRoutes = require("./routes/posts");
+const errorRoutes = require("./routes/errorRoutes")
 const port = 3000;
 const csrf = require("csurf");
 const app = express();
@@ -38,11 +39,12 @@ app.use(function (req, res, next) {
   res.locals.csrfToken = req.csrfToken();
   next();
 });
-
+app.use(errorRoutes);
 app.use(authRoutes);
 app.use(adminRoutes);
 app.use(profileRoutes);
 app.use(postsRoutes);
+
 
 db.connectDb()
   .then(function () {

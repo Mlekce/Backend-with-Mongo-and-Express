@@ -1,4 +1,6 @@
 const Post = require("../models/post-model");
+const mongodb = require('mongodb')
+let ObjectId = mongodb.ObjectId
 const validation = require("../util/verification")
 
 async function getPosts(req, res) {
@@ -38,8 +40,22 @@ async function postCreate(req, res){
 
 }
 
+async function deletePost(req, res){
+  let id = new ObjectId(req.params.id)
+  await Post.deletePost(id)
+  res.redirect('/myposts')
+}
+
+async function updatePost(req, res){
+  let id = new ObjectId(req.params.id)
+  const post = await Post.findSingePost(id)
+  res.render('update-post', {post: post})
+}
+
 module.exports = {
     getPosts: getPosts,
     getMyPosts: getMyPosts,
-    postCreate: postCreate
+    postCreate: postCreate,
+    deletePost: deletePost,
+    updatePost: updatePost
 }
