@@ -29,7 +29,14 @@
               <%= post.content %>
             </div>
             <div class="post-item">
-                           
+              <form action="/post/<%= post._id %>/" method="get">
+                <input
+                  type="hidden"
+                  name="_csrf"
+                  value="<%= locals.csrfToken %>"
+                />
+                <button>View1</button>
+              </form> 
               <% if (locals.isAdmin) { %>
                 <form action="/post/<%= post._id %>/delete" method="post">
                   <input
@@ -39,14 +46,7 @@
                   />
                   <button>Delete</button>
                 </form>
-                <form action="/post/<%= post._id %>/" method="post">
-                  <input
-                    type="hidden"
-                    name="_csrf"
-                    value="<%= locals.csrfToken %>"
-                  />
-                  <button>View</button>
-                </form>
+                
               <% } %>
 
               

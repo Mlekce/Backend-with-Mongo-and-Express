@@ -87,7 +87,7 @@
       <div class="new-posts">
         <h1>Update post</h1>
         <br>
-        <form action="/myposts/create" method="post" id="newPostForm">
+        <form action="/post/<%=post._id %>/update" method="post" id="newPostForm">
           <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
           <div class="form-control">
             <label for="title">Title</label>
@@ -100,9 +100,9 @@
           <div class="form-control">
             <input
               type="hidden"
-              name="author"
-              id="post-author"
-              value="<%= locals._id %>"
+              name="id"
+              id="post-if"
+              value="<%= post._id %>"
             />
           </div>
           <div class="form-control">
@@ -116,7 +116,7 @@
             ><%= post.content %></textarea>
           </div>
           <div class="form-control">
-            <button>Post</button>
+            <button>Update</button>
           </div>
         </form>
       </div>

@@ -13,7 +13,7 @@ class User {
     const newUser = {
       email: this.email,
       password: encPassword,
-      avatar: "pictures/nopicture.png",
+      avatar: "pictures/nopicture.jpg",
     };
     await db.getDb().collection("users").insertOne(newUser);
   }

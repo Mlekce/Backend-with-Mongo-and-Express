@@ -14,6 +14,10 @@ router.post("/myposts/create", controller.postCreate);
 
 router.get("/post/:id/update", controller.updatePost);
 
+router.post("/post/:id/update", controller.postUpdatePost);
+
 router.post("/post/:id/delete", controller.deletePost);
+
+router.get('/post/:id', controller.viewPost)
 
 module.exports = router;

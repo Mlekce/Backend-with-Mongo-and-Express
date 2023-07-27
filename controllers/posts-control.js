@@ -52,10 +52,35 @@ async function updatePost(req, res){
   res.render('update-post', {post: post})
 }
 
+async function postUpdatePost(req, res){
+  let title = req.body.title
+  let summary = req.body.summary
+  let content = req.body.content
+  let id = new ObjectId(req.body.id)
+  if(title && summary && content && title.trim().length > 0 && summary.trim().length > 0 && content.trim().length > 0){
+      await Post.updatePost(id, title, summary, content)
+      return res.redirect('/myposts')
+  }
+  return res.redirect('/403')
+}
+
+async function viewPost(req, res){
+  var id = new ObjectId(req.params.id)
+  const post = await Post.findSingePost(id)
+  if(post){
+    return res.render('post-details', {post: post})
+  }
+  else {
+    return res.status(404).redirect('/404')
+  }
+}
+
 module.exports = {
     getPosts: getPosts,
     getMyPosts: getMyPosts,
     postCreate: postCreate,
     deletePost: deletePost,
-    updatePost: updatePost
+    updatePost: updatePost,
+    viewPost: viewPost,
+    postUpdatePost:postUpdatePost
 }

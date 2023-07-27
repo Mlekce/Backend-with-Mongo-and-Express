@@ -22,7 +22,7 @@ class Post {
     return await db.getDb().collection("posts").deleteOne({ _id: id });
   }
 
-  static async updatePost(id, title, summary, author, content) {
+  static async updatePost(id, title, summary, content) {
     return await db
       .getDb()
       .collection("posts")
@@ -32,7 +32,6 @@ class Post {
           $set: {
             title: title,
             summary: summary,
-            author: author,
             date: new Date().toLocaleString(),
             content: content,
           },

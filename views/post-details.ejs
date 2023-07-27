@@ -1,15 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <%- include('templates/head') %> 
-  <link rel="stylesheet" href="./style/home.css">
-</head>
-<body>
-  <%- include('templates/header') %> 
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackers</title>
+    <link rel="stylesheet" href="/style/home.css" />
+    <link rel="stylesheet" href="/style/my-posts.css" />
+    <link rel="stylesheet" href="/style/common.css" />
+    <link rel="stylesheet" href="/style/details.css" />
+    <script src="/scripts/script.js" defer></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <% if (!locals.isAuthenticated) { %>
+          <li><a class="nav-link" href="/home">Home</a></li>
+          <li><a class="nav-link" href="/signup">Signup</a></li>
+          <li><a class="nav-link" href="/login">Login</a></li>
+          <% } %> <% if (locals.isAuthenticated) { %> <% if (locals.isAdmin) { %>
+          <li><a class="nav-link" href="/admin">Admin</a></li>
+          <% } %>
+    
+          
+          <li><a class="nav-link" href="/posts">Blog</a></li>
+          <li><a class="nav-link" href="/myposts">My posts</a></li>
+          <li><a class="nav-link" href="/profile">Profile</a></li>
+          <li>
+            <form action="/logout" method="POST">
+              <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf" />
+              <button id="logout-btn">Logout</button>
+            </form>
+          </li>
+          <% } %>
+        </ul>
+      </nav>
+    
+      <div class="container-c1">
+        <div class="user-data">
+          <% if (locals.avatar && locals.email) { %>
+          <a href="/profile"><%= locals.email%></a>
+          <a href="/profile"><img src="/<%= locals.avatar %> "/></a>
+          <% } %>
+        </div>
+        <div class="container-c2">
+          <button id="drawer-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <aside id="mobile-drawer">
+            <nav>
+              <ul>
+                <li class="nav-item"><a href="/home">Home</a></li>
+                <% if (!locals.isAuthenticated) { %>
+                <li class="nav-item"><a href="/signup">Signup</a></li>
+                <li class="nav-item"><a href="/login">Login</a></li>
+                <% } %> <% if (locals.isAuthenticated) { %>
+                <li class="nav-item"><a href="/admin">Admin</a></li>
+                <li class="nav-item"><a href="/profile">Profile</a></li>
+                <li class="nav-item"><a href="/posts">Blog</a></li>
+                <li class="nav-item"><a href="/myposts">My posts</a></li>
+                <li class="nav-item">
+                  <form action="/logout" method="POST">
+                    <input
+                      type="hidden"
+                      value="<%= locals.csrfToken %>"
+                      name="_csrf"
+                    />
+                    <button id="logout-btn-drawer">Logout</button>
+                  </form>
+                </li>
+                <% } %>
+              </ul>
+            </nav>
+          </aside>
+        </div>
+      </div>
+    </header>
     <main>
       <div class="top-content">
-        <div class="top-title"> <%= post.title %> </div>
-        <div class="top-author"> <span><%= post.author %></span>  <span><%= post.date %></span> </div>
+        <div class="top-title"> 
+          <h2> <%= post.title %></h2>
+           </div>
+        <div class="top-author"> 
+          <div>
+            Author: <b><%= post.author.authorName %></b>
+          </div>
+           <div>Date:
+            <i><%= post.date %> </i>  </div>
+          </div>
+           
         <div class="top-content"> <%= post.content %></div>
       </div>
 
