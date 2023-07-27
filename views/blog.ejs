@@ -8,7 +8,7 @@
 <body>
   <%- include('templates/header') %> 
     <main>
-      <h3>Welcome user, here are your blog posts.</h3>
+      <h3> ALL BLOG POSTS </h3>
       <br />
       <div class="my-posts">
         <% if (!posts) { %>
@@ -38,6 +38,14 @@
                     value="<%= locals.csrfToken %>"
                   />
                   <button>Delete</button>
+                </form>
+                <form action="/post/<%= post._id %>/" method="post">
+                  <input
+                    type="hidden"
+                    name="_csrf"
+                    value="<%= locals.csrfToken %>"
+                  />
+                  <button>View</button>
                 </form>
               <% } %>
 

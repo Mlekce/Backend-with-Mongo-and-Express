@@ -25,9 +25,7 @@ input:focus {
   background-color: rgb(245, 232, 255);
 }
 
-input:invalid {
-  background-color: rgb(226, 133, 133);
-}
+
 
 input,
 textarea {
