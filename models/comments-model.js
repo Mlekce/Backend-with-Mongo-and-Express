@@ -1,11 +1,11 @@
 const db = require("../data/database");
 
 class Comment {
-  static async createComment(title, text, postId) {
+  static async createComment(comment) {
     return await db
       .getDb()
       .collection("comments")
-      .insertOne({ title: title, text: text, postId: postId });
+      .insertOne(comment);
   }
 
   static async fetchComments(id) {

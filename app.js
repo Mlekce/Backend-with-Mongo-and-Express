@@ -9,6 +9,7 @@ const profileRoutes = require("./routes/profile");
 const adminRoutes = require("./routes/admin");
 const postsRoutes = require("./routes/posts");
 const errorRoutes = require("./routes/errorRoutes")
+const commentRoutes = require("./routes/comments")
 const port = 3000;
 const csrf = require("csurf");
 const app = express();
@@ -22,6 +23,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 app.use(express.static("public"));
 app.use("/pictures", express.static("pictures"));
 app.use(
@@ -44,6 +46,7 @@ app.use(authRoutes);
 app.use(adminRoutes);
 app.use(profileRoutes);
 app.use(postsRoutes);
+app.use(commentRoutes);
 
 
 db.connectDb()
